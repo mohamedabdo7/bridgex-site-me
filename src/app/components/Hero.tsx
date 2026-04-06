@@ -24,11 +24,11 @@ const Hero: React.FC<HeroProps> = ({ scrollToFooter }) => {
           opacity: 1,
           duration: 1.5,
           ease: "power3.out",
-        }
+        },
       );
     }
 
-    // Single observer for both phone animations
+    // Single observer for both phone animationss
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -54,7 +54,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToFooter }) => {
           }
         });
       },
-      { threshold: 0.5, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.5, rootMargin: "0px 0px -10% 0px" },
     );
 
     const targetElement = document.querySelector(".mockup-section");

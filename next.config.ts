@@ -1,81 +1,28 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Security Headers
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          // Prevent XSS attacks
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          // Prevent clickjacking
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          // Enable XSS protection
-          {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
-          // Referrer policy
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-          // Permissions policy
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
-          },
-          // Content Security Policy
-          {
-            key: "Content-Security-Policy",
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
-              "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: https:",
-              "font-src 'self' data:",
-              "connect-src 'self' https://api.resend.com",
-              "frame-ancestors 'none'",
-            ].join("; "),
-          },
-        ],
-      },
-      {
-        // API routes specific headers
-        source: "/api/:path*",
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex, nofollow",
-          },
-        ],
-      },
-    ];
-  },
-
-  // Disable X-Powered-By header
-  poweredByHeader: false,
-
-  // Enable strict mode
-  reactStrictMode: true,
-
-  // Image optimization settings
   images: {
-    domains: [], // Add allowed image domains here if needed
     formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 86400,
+    qualities: [75, 90],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "unsplash.com",
+      },
+    ],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
   },
-
-  // Compiler options
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
-  },
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
 };
 
 export default nextConfig;

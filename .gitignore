@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -19,6 +17,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -28,24 +27,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# ==========================================
-# SECURITY: Environment Variables - CRITICAL
-# ==========================================
-# NEVER commit these files - they contain sensitive data
+# env files
 .env
-.env.local
-.env.development
-.env.development.local
-.env.test
-.env.test.local
-.env.production
-.env.production.local
 .env*.local
-
-# Keep only .env.example for documentation
-!.env.example
+.env.production
 
 # vercel
 .vercel
@@ -54,51 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# ==========================================
-# ADDITIONAL SECURITY & CLEANUP
-# ==========================================
-
-# IDE and Editor files
-.vscode/
-.idea/
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
 *.swp
 *.swo
 *~
-.project
-.classpath
-.settings/
-
-# OS files
-Thumbs.db
-desktop.ini
-
-# Backup and temporary files
-*.backup
-*.bak
-*.old
-*.tmp
-*~
-.cache
-
-# Logs
-logs/
-*.log
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Output of 'npm pack'
-*.tgz
-
-# Temporary folders
-tmp/
-temp/
